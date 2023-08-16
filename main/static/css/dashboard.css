@@ -1,0 +1,55 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 90%;
+}
+
+.header {
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    position: relative;
+    height: 100%;
+    width: 15%;
+    margin: 10px;
+}
+
+.sidebar .btn{
+    text-align: left;
+    width: 100%;
+}
+
+.sidebar .btn:hover{
+    background-color: #F2F2F2;
+}
+
+.sidebar .btn:active{
+    border: 1px solid #F2F2F2;
+}
+
+.sidebar .btn:focus{
+    background-color: #F2F2F2;
+}
+
+.sidebar img {
+    width: 30px;
+    height: 30px;
+}
+
+#al-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.main-content {
+    width: 85%;
+}
