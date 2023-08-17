@@ -19,7 +19,9 @@ body {
     position: relative;
     height: 100%;
     width: 15%;
-    margin: 10px;
+    margin-left: 10px;
+    padding-top: 10px;
+    border-right: 1px solid #EAECEF;
 }
 
 .sidebar .btn{
@@ -27,16 +29,14 @@ body {
     width: 100%;
 }
 
-.sidebar .btn:hover{
+.sidebar .btn:hover, .btn:focus{
     background-color: #F2F2F2;
+    border-left: 4px solid #00d1cd;
 }
 
 .sidebar .btn:active{
     border: 1px solid #F2F2F2;
-}
-
-.sidebar .btn:focus{
-    background-color: #F2F2F2;
+    border-left: 3px solid #00d1cd;
 }
 
 .sidebar img {
@@ -52,4 +52,19 @@ body {
 
 .main-content {
     width: 85%;
+}
+
+.dashboard-name {
+    display: flex;
+    align-items: center;
+    width: max;
+    height: 97px;
+    background-color: #F2F2F2;
+    padding-left: 20px;    
+}
+
+#user-data {
+    text-align: center;
+    margin-left: 25px;
+    margin-right: 25px;
 }
