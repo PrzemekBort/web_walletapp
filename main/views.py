@@ -17,8 +17,8 @@ def logout_user(request):
 @login_required(login_url='/login')
 def dashboard(request):
 	user = request.user
-	ballance = Currencies.objects.get(id=user.id)
-	amount = ballance.ballance
+	amount = calc_account_value(user)
+
 	return render(request, 'main/dashboard.html', {"amount": amount})
 
 
@@ -28,8 +28,21 @@ def balance(request):
 
 
 def calc_account_value(user):
-	currencies = Currencies.objects.filter(id=user.id)
-	gold = Gold.objects.filter(id=user.id)
-	crypto = Crypto.objects.filter(id=user.id)
-	shares = Shares.objects.filter(id=user.id)
+	exchange_rate = PLN_ExchangeRate.objects.all()
+
+	currencies = Currencies.objects.filter(owner=user)
+	# TODO implement
+	# gold_assets = Gold.objects.filter(owner=user)
+	# crypto_assets = Crypto.objects.filter(owner=user)
+	# shares_assets = Shares.objects.filter(owner=user)
+
+	account_value = 0
+	for currency in currencies:
+		if currency.currency != "PLN":
+			multiplier = exchange_rate.get(currency_code=currency.currency)
+			account_value += currency.ballance * multiplier.exchange_rate
+		else:
+			account_value += currency.ballance
+
+	return "{:.2f}".format(account_value)
 
