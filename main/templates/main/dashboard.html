@@ -28,11 +28,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
                         </li>
                     </ul>
-                    <a class="nav-link" href="/account">My account&nbsp;&nbsp;</a>
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="/account" style="margin-right: 10px;">My account</a>
+                    <a class="nav-link" href="/logout" style="color: red;">
+                        <img src="{% static 'icons/logout.png' %}" style="width: 20px; height: 20px;">
+                        Logout</a>
                 </div>
             </div>
         </nav>
@@ -104,11 +106,11 @@
                 <div class="assets-general-info">
                     <div style="margin-right: 50px;">
                         <p style="margin-bottom: 0px;">Account value</p>
-                        <h2 style="margin-bottom: 0px;">{{amount}}</h2>
+                        <h2 style="margin-bottom: 0px;">{{amount}} PLN</h2>
                     </div>
                     <div style="margin-right: 50px;">
                         <p style="margin-bottom: 0px;">Assets count</p>
-                        <h2 style="margin-bottom: 0px;">{{assets_count}}</h2>
+                        <h2 style="margin-bottom: 0px; color: #00d1cd">{{assets_count}}</h2>
                     </div>
                 </div>
             </div>
