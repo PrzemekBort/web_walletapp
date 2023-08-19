@@ -27,11 +27,12 @@ body {
 .sidebar .btn{
     text-align: left;
     width: 100%;
+    border-left: 3px solid #00d1cd;
 }
 
 .sidebar .btn:hover, .btn:focus{
     background-color: #F2F2F2;
-    border-left: 4px solid #00d1cd;
+    border-left: 3px solid #00d1cd;
 }
 
 .sidebar .btn:active{
