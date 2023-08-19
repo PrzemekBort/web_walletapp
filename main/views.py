@@ -3,46 +3,60 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from . models import *
+from .models import *
 
 
 def start_page(request):
-	return redirect('/login')
+    return redirect('/login')
 
 
 def logout_user(request):
-	logout(request)
+    logout(request)
 
 
 @login_required(login_url='/login')
 def dashboard(request):
-	user = request.user
-	amount = calc_account_value(user)
+    user = request.user
+    amount = account_value(user)
+    count = assets_count(user)
 
-	return render(request, 'main/dashboard.html', {"amount": amount})
+    return render(request, 'main/dashboard.html',
+                  context={
+                      "amount": amount,
+                      "assets_count": count}
+                  )
 
 
 @login_required(login_url='/login')
 def balance(request):
-	return render(request, 'main/balance.html')
+    return render(request, 'main/balance.html')
 
 
-def calc_account_value(user):
-	exchange_rate = PLN_ExchangeRate.objects.all()
+# ----- CUSTOM FUNCTIONS ----- #
+def account_value(user):
+    exchange_rate = PLN_ExchangeRate.objects.all()
 
-	currencies = Currencies.objects.filter(owner=user)
-	# TODO implement
-	# gold_assets = Gold.objects.filter(owner=user)
-	# crypto_assets = Crypto.objects.filter(owner=user)
-	# shares_assets = Shares.objects.filter(owner=user)
+    currencies = Currencies.objects.filter(owner=user)
+    # TODO implement
+    # gold_assets = Gold.objects.filter(owner=user)
+    # crypto_assets = Crypto.objects.filter(owner=user)
+    # shares_assets = Shares.objects.filter(owner=user)
 
-	account_value = 0
-	for currency in currencies:
-		if currency.currency != "PLN":
-			multiplier = exchange_rate.get(currency_code=currency.currency)
-			account_value += currency.ballance * multiplier.exchange_rate
-		else:
-			account_value += currency.ballance
+    value = 0  # sumarize account value
+    for currency in currencies:
+        if currency.currency != "PLN":
+            multiplier = exchange_rate.get(currency_code=currency.currency)
+            value += currency.ballance * multiplier.exchange_rate
+        else:
+            value += currency.ballance
 
-	return "{:.2f}".format(account_value)
+    return "{:.2f}".format(value)
 
+
+def assets_count(user):
+    currencies = Currencies.objects.filter(owner=user).count()
+    gold_assets = Gold.objects.filter(owner=user).count()
+    crypto_assets = Crypto.objects.filter(owner=user).count()
+    shares_assets = Shares.objects.filter(owner=user).count()
+
+    return currencies + gold_assets + crypto_assets + shares_assets

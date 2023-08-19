@@ -98,12 +98,21 @@
                     </div>
                 {% endblock %}
             </div>
-            <div style="margin: 20px;">
-                <div style="border-bottom: 1px solid #EAECEF;">
-                    <p style="margin-bottom: 0px;">Account value</p>
-                    <h2 style="margin-bottom: 0px;">{{amount}}&nbsp;</h2>
+
+            {% block main-content %}
+            <div class="dashboard-content" style="margin: 20px;">
+                <div class="assets-general-info">
+                    <div style="margin-right: 50px;">
+                        <p style="margin-bottom: 0px;">Account value</p>
+                        <h2 style="margin-bottom: 0px;">{{amount}}</h2>
+                    </div>
+                    <div style="margin-right: 50px;">
+                        <p style="margin-bottom: 0px;">Assets count</p>
+                        <h2 style="margin-bottom: 0px;">{{assets_count}}</h2>
+                    </div>
                 </div>
             </div>
+            {% endblock %}
         </div>
     </div>
 
