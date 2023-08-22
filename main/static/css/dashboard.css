@@ -30,9 +30,8 @@ body {
     border-left: 3px solid #00d1cd;
 }
 
-.sidebar .btn:hover, .btn:focus{
+.sidebar .btn:hover {
     background-color: #F2F2F2;
-    border-left: 3px solid #00d1cd;
 }
 
 .sidebar .btn:active{

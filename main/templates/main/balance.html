@@ -1,9 +1,62 @@
 {% extends 'main/dashboard.html'%}
 
-{% block dashboard-name%}Balance{% endblock %}
 
-{% block dashboard-bar %}
+
+{% block page-bar-name %}Balance{% endblock %}
+
+{% block page-bar-content %}
+    <style>
+        .page-bar-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            margin-right: 10px;
+        }
+
+        .page-bar-content .btn {
+            background-color: #00d1cd;
+        }
+
+        .currency-list-header,
+        .currency-list-element {
+            display: flex;
+            flex-direction: row;;
+            border-bottom: 1px solid #F2F2F2;
+        }
+        .currency-list-header h6,
+        .currency-list-element p {
+            margin-right: 10px;
+        }
+
+    </style>
+
+    <div class="page-bar-content">
+        <button type="submit" class="btn btn-success">New Currency</button>
+    </div>
 {% endblock %}
 
 {% block main-content %}
+    <div class="ballance-content" style="margin: 20px;">
+        <div class="currency-list-header">
+            <h6 style="width: 50px;">#</h6>
+            <h6 style="width: 200px;">Currency</h6>
+            <h6 style="width: 150px;">Quantity</h6>
+            <h6 style="width: 150px;">Value</h6>
+            <h6 style="width: 150px;">Profit</h6>
+            <h6 style="width: 150px;">Exchange Rate</h6>
+            <h6 style="width: 100px;">% of wallet</h6>
+        </div>
+        <div class="currency-list-content">
+            <div class="currency-list-element" style="margin-top: 10px;">
+                <p style="width: 50px;">{{n}}</p>
+                <p style="width: 200px;">Name</p>
+                <p style="width: 150px;">100</p>
+                <p style="width: 150px;">10300</p>
+                <p style="width: 150px;">600</p>
+                <p style="width: 150px;">4.12</p>
+                <p style="width: 100px;">10%</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
