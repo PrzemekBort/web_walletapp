@@ -42,21 +42,23 @@
             <h6 style="width: 50px;">#</h6>
             <h6 style="width: 200px;">Currency</h6>
             <h6 style="width: 150px;">Quantity</h6>
-            <h6 style="width: 150px;">Value</h6>
+            <h6 style="width: 150px;">Value PLN</h6>
             <h6 style="width: 150px;">Profit</h6>
             <h6 style="width: 150px;">Exchange Rate</h6>
             <h6 style="width: 100px;">% of wallet</h6>
         </div>
         <div class="currency-list-content">
+        {% for currency in currencies %}
             <div class="currency-list-element" style="margin-top: 10px;">
-                <p style="width: 50px;">{{n}}</p>
-                <p style="width: 200px;">Name</p>
-                <p style="width: 150px;">100</p>
-                <p style="width: 150px;">10300</p>
-                <p style="width: 150px;">600</p>
-                <p style="width: 150px;">4.12</p>
-                <p style="width: 100px;">10%</p>
+                <p style="width: 50px;">#</p>
+                <p style="width: 200px;">{{currency.currency}}</p>
+                <p style="width: 150px;">{{currency.ballance}}</p>
+                <p style="width: 150px;">{{currency.get_value_in_PLN}}</p>
+                <p style="width: 150px;">#</p>
+                <p style="width: 150px;">{{currency.get_exchange_rate}}</p>
+                <p style="width: 100px;">#</p>
             </div>
+        {% endfor %}
         </div>
     </div>
 {% endblock %}

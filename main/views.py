@@ -23,13 +23,19 @@ def dashboard(request):
     return render(request, 'main/dashboard.html',
                   context={
                       "amount": amount,
-                      "assets_count": count}
-                  )
+                      "assets_count": count
+                  })
 
 
 @login_required(login_url='/login')
 def balance(request):
-    return render(request, 'main/balance.html')
+    user = request.user
+    currencies = Currencies.objects.filter(owner=user)
+    return render(request, 'main/balance.html',
+                  context={
+                      "currencies": currencies,
+                      "account_value": account_value(user)
+                  })
 
 
 # ----- CUSTOM FUNCTIONS ----- #

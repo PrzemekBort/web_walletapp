@@ -25,6 +25,21 @@ class Currencies(models.Model):
     ballance = models.FloatField(default=0)
     main_currency = models.BooleanField(default=False)
 
+    def get_exchange_rate(self):
+        if self.currency != "PLN":
+            currency = PLN_ExchangeRate.objects.get(currency_code=self.currency)
+            return currency.exchange_rate
+        else:
+            return 1.0
+
+    def get_value_in_PLN(self):
+        if self.currency != "PLN":
+            multiplier = float(self.get_exchange_rate())
+            ballance = getattr(self, "ballance")
+            return "{:.2f}".format(ballance * multiplier)
+        else:
+            return "{:.2f}".format(self.ballance)
+
 
 class BaseAsset(models.Model):
 
@@ -94,7 +109,7 @@ class PLN_ExchangeRate(models.Model):
         ("JPY", "Japanese Yen")
     ]
 
-    currency_code = models.CharField(max_length=3, choices=CURRENCIES)
+    currency_code = models.CharField(max_length=3, choices=CURRENCIES)  # TODO implement unique
     exchange_rate = models.FloatField()
     last_updated = models.DateTimeField()
 
